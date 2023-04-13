@@ -30,19 +30,29 @@
         tbody.innerHTML = '';
 
         for (var i = 0; i < values.length; i++) {
-          if (searchQuery && values[i].indexOf(searchQuery) === -1) {
-            continue;
-          }
-
-          var row = document.createElement('tr');
+          var match = false;
 
           for (var j = 0; j < values[i].length; j++) {
-            var cell = document.createElement('td');
-            cell.textContent = values[i][j];
-            row.appendChild(cell);
+            var value = values[i][j];
+            var regex = new RegExp(searchQuery, 'i');
+
+            if (regex.test(value)) {
+              match = true;
+              break;
+            }
           }
 
-          tbody.appendChild(row);
+          if (match) {
+            var row = document.createElement('tr');
+
+            for (var j = 0; j < values[i].length; j++) {
+              var cell = document.createElement('td');
+              cell.textContent = values[i][j];
+              row.appendChild(cell);
+            }
+
+            tbody.appendChild(row);
+          }
         }
       }, function(reason) {
         console.error('Error: ' + reason.result.error.message);
