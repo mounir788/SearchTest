@@ -919,12 +919,13 @@ select {
   background: var(--grey4);
 }
 .faq .search-group {
-  margin: 10px 30px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   border: 1px solid var(--black);
   padding: 10px 20px;
   background: var(--white);
+  max-width: 80%;
 }
 .faq .search-group input {
   flex: 1;
